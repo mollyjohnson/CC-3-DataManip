@@ -28,3 +28,23 @@ library(tidyr)
 
 # Set working directory ----
 setwd("C:/Users/mljoh/github/ecologyDataScienceCourses/CC-3-DataManip")
+
+# import plume size data from .csv
+plume_size <- read.csv("dragons.csv", header = TRUE)
+
+# check import and preview data
+head(plume_size)  # first few observations
+str(plume_size)  # types of variables
+
+# get object info
+plume_size$dragon.ID  # prints all id codes in dataset
+length(unique(plume_size$dragon.ID))  # num of distinct dragons
+length(unique(plume_size$species))  # num of distinct species
+
+# rename 4th treatment (paprika column) to turmeric
+# format: rename(dataframe, newname = oldname)
+plume_size <- rename(plume_size, turmeric = paprika)
+
+# confirm that the 4th treatment col name is now turmeric instead of paprika
+summary(plume_size)
+
