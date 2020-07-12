@@ -27,4 +27,4 @@ library(tidyr)
 
 
 # Set working directory ----
-setwd(":/Users/mljoh/github/ecologyDataScienceCourses/CC-3-DataManip")
+setwd("C:/Users/mljoh/github/ecologyDataScienceCourses/CC-3-DataManip")
