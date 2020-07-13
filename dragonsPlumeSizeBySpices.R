@@ -45,6 +45,7 @@ plume_size$dragon.ID  # prints all id codes in dataset
 length(unique(plume_size$dragon.ID))  # num of distinct dragons
 length(unique(plume_size$species))  # num of distinct species
 
+# 1. fix: ----
 # rename 4th treatment (paprika column) to turmeric
 # format: rename(dataframe, newname = oldname)
 plume_size <- rename(plume_size, turmeric = paprika)
@@ -52,3 +53,29 @@ plume_size <- rename(plume_size, turmeric = paprika)
 # confirm that the 4th treatment col name is now turmeric instead of paprika
 summary(plume_size)
 
+# 2. fix: ----
+# hungarian horntail measurements for tabasco trial only should be 30cm higher than they are
+hungarian_horntail_subset <- filter(plume_size, species == "hungarian_horntail")
+
+# check to make sure hungarian horntail subset was properly selected prior to adding the 30cm
+# to each hungarian horntail tabasco trial plume size measurement
+head(hungarian_horntail_subset$tabasco)
+tail(hungarian_horntail_subset$tabasco)
+length(unique(hungarian_horntail_subset$dragon.ID))
+
+# hungarian horntail subset successful, time to add the 30cm to each tabasco trial plume measurement
+hungarian_horntail_subset$tabasco <- (hungarian_horntail_subset$tabasco + 30)
+
+# check to make sure each hungarian horntail tabasco trial plume measurement had 30 cm added
+head(hungarian_horntail_subset$tabasco)
+tail(hungarian_horntail_subset$tabasco)
+length(unique(hungarian_horntail_subset$dragon.ID))
+
+# make sure tabasco measurement for other species remains unaffected
+head(filter(plume_size, species != "hungarian_horntail"))
+tail(filter(plume_size, species != "hungarian_horntail"))
+
+# 3. fix: ----
+# lengths are in cm for all species/treatments. change to meters.
+# conversion rate: 100 cm == 1 m
+# thus all measurements need to be multiplied by 100 to get their length in meters
