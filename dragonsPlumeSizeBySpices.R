@@ -27,7 +27,11 @@ library(tidyr)
 
 
 # Set working directory ----
-setwd("C:/Users/mljoh/github/ecologyDataScienceCourses/CC-3-DataManip")
+# for when using Rstudio desktop version only (not cloud version, for cloud, leave as default)
+# setwd("C:/Users/mljoh/github/ecologyDataScienceCourses/CC-3-DataManip")
+
+# check where current working directory now is
+getwd()
 
 # import plume size data from .csv
 plume_size <- read.csv("dragons.csv", header = TRUE)
