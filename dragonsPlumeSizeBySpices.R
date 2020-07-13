@@ -67,9 +67,13 @@ length(unique(hungarian_horntail_subset$dragon.ID))
 hungarian_horntail_subset$tabasco <- (hungarian_horntail_subset$tabasco + 30)
 
 # check to make sure each hungarian horntail tabasco trial plume measurement had 30 cm added
-head(hungarian_horntail_subset$tabasco)
-tail(hungarian_horntail_subset$tabasco)
+head(hungarian_horntail_subset)
+tail(hungarian_horntail_subset)
 length(unique(hungarian_horntail_subset$dragon.ID))
+
+# check if hungarian horntail was affected in original plume_size dataframe?
+head(filter(plume_size, species == "hungarian_horntail"))
+tail(filter(plume_size, species == "hungarian_horntail"))
 
 # make sure tabasco measurement for other species remains unaffected
 head(filter(plume_size, species != "hungarian_horntail"))
