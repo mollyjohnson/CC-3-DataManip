@@ -93,3 +93,6 @@ plume_size$turmeric = plume_size$turmeric / cm_to_m_conversion_factor
 # look at new head and tail values for all to ensure they were converted to meters properly
 head(plume_size)  # first few observations
 tail(plume_size)  # last few observations
+
+# save the fixed data to a new csv prior to converting to long form to have a copy if needed later
+write.csv(plume_size, file = "dragons_w_data_mistake_fixes.csv")
