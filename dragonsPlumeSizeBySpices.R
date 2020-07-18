@@ -93,6 +93,17 @@ plume_size$turmeric = plume_size$turmeric / cm_to_m_conversion_factor
 # look at new head and tail values for all to ensure they were converted to meters properly
 head(plume_size)  # first few observations
 tail(plume_size)  # last few observations
+str(plume_size)
+class(plume_size)
 
 # save the fixed data to a new csv prior to converting to long form to have a copy if needed later
 write.csv(plume_size, file = "dragons_w_data_mistake_fixes.csv")
+
+# convert dataframe to long format
+plume_size_long = gather(plume_size, spice, plume_size.meters,
+                         c(tabasco, jalapeno, wasabi, turmeric))
+
+# check that it was converted to long form correctly
+head(plume_size_long)
+tail(plume_size_long)
+
