@@ -56,7 +56,7 @@ str(plume_size)
 class(plume_size)
 
 # 2. fix: ----
-# hungarian horntail measurements for tabasco trial only should be 30cm higher than they are
+# hungarian horntail measurements for tabasco trial only should be 30cm lower than they are
 
 # look at current hungarian horntail tabasco values
 head(filter(plume_size, species == "hungarian_horntail"))
@@ -64,7 +64,7 @@ tail(filter(plume_size, species == "hungarian_horntail"))
 
 # add 30 cm to hungarian horntail tabasco trial measurements
 plume_size[plume_size$species == "hungarian_horntail", ]$tabasco = 
-  plume_size[plume_size$species == "hungarian_horntail", ]$tabasco + 30
+  plume_size[plume_size$species == "hungarian_horntail", ]$tabasco - 30
 
 # check to make sure each hungarian horntail tabasco trial plume measurement had 30 cm added
 head(filter(plume_size, species == "hungarian_horntail"))
@@ -107,3 +107,29 @@ plume_size_long = gather(plume_size, spice, plume_size.meters,
 head(plume_size_long)
 tail(plume_size_long)
 
+# create 3 boxplots (1 for each species) to show the effects of the spices on plume size
+par(mfrow = c(1, 3))  # splits plotting device into 3 cols where the plots will all appear side by side
+
+# welsh green boxplot
+plume_size_long_welsh_green <- filter(plume_size_long, species == "welsh_green")
+boxplot(plume_size.meters ~ spice, data = plume_size_long_welsh_green,
+        xlab = "Spice",
+        ylab = "Plume Size (m)",
+        main = "Plume Size of Welsh Green Dragons",
+        ylim = c(0, 2.0))
+
+# hungarian horntail boxplot
+plume_size_long_hungarian_horntail <- filter(plume_size_long, species == "hungarian_horntail")
+boxplot(plume_size.meters ~ spice, data = plume_size_long_hungarian_horntail,
+        xlab = "Spice",
+        ylab = "Plume Size (m)",
+        main = "Plume Size of Hungarian Horntail Dragons",
+        ylim = c(0, 2.0))
+
+# swedish shortsnout boxplot
+plume_size_long_swedish_shortsnout <- filter(plume_size_long, species == "swedish_shortsnout")
+boxplot(plume_size.meters ~ spice, data = plume_size_long_swedish_shortsnout,
+        xlab = "Spice",
+        ylab = "Plume Size (m)",
+        main = "Plume Size of Swedish Shortsnout Dragons",
+        ylim = c(0, 2.0))
