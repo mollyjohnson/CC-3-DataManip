@@ -78,3 +78,18 @@ tail(filter(plume_size, species != "hungarian_horntail"))
 # lengths are in cm for all species/treatments. change to meters.
 # conversion rate: 100 cm == 1 m
 # thus all measurements need to be multiplied by 100 to get their length in meters
+
+# look at current head and tail values for all
+head(plume_size)  # first few observations
+tail(plume_size)  # last few observations
+
+# divide all plume sizes by 100 to get their length in meters
+cm_to_m_conversion_factor = 100
+plume_size$tabasco = plume_size$tabasco / cm_to_m_conversion_factor
+plume_size$jalapeno = plume_size$jalapeno / cm_to_m_conversion_factor 
+plume_size$wasabi = plume_size$wasabi / cm_to_m_conversion_factor
+plume_size$turmeric = plume_size$turmeric / cm_to_m_conversion_factor
+
+# look at new head and tail values for all to ensure they were converted to meters properly
+head(plume_size)  # first few observations
+tail(plume_size)  # last few observations
