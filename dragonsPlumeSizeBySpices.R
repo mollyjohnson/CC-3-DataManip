@@ -52,26 +52,21 @@ plume_size <- rename(plume_size, turmeric = paprika)
 
 # confirm that the 4th treatment col name is now turmeric instead of paprika
 summary(plume_size)
+str(plume_size)
+class(plume_size)
 
 # 2. fix: ----
 # hungarian horntail measurements for tabasco trial only should be 30cm higher than they are
-hungarian_horntail_subset <- filter(plume_size, species == "hungarian_horntail")
 
-# check to make sure hungarian horntail subset was properly selected prior to adding the 30cm
-# to each hungarian horntail tabasco trial plume size measurement
-head(hungarian_horntail_subset$tabasco)
-tail(hungarian_horntail_subset$tabasco)
-length(unique(hungarian_horntail_subset$dragon.ID))
+# look at current hungarian horntail tabasco values
+head(filter(plume_size, species == "hungarian_horntail"))
+tail(filter(plume_size, species == "hungarian_horntail"))
 
-# hungarian horntail subset successful, time to add the 30cm to each tabasco trial plume measurement
-hungarian_horntail_subset$tabasco <- (hungarian_horntail_subset$tabasco + 30)
+# add 30 cm to hungarian horntail tabasco trial measurements
+plume_size[plume_size$species == "hungarian_horntail", ]$tabasco = 
+  plume_size[plume_size$species == "hungarian_horntail", ]$tabasco + 30
 
 # check to make sure each hungarian horntail tabasco trial plume measurement had 30 cm added
-head(hungarian_horntail_subset)
-tail(hungarian_horntail_subset)
-length(unique(hungarian_horntail_subset$dragon.ID))
-
-# check if hungarian horntail was affected in original plume_size dataframe?
 head(filter(plume_size, species == "hungarian_horntail"))
 tail(filter(plume_size, species == "hungarian_horntail"))
 
